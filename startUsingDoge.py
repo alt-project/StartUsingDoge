@@ -38,8 +38,6 @@ while True:
     #request the mood for the tweets we just found
     tweet_moods = sentiment140.get_mood_of_tweets(search_results['statuses'])
 
-    print tweet_moods
-
     for tweet in search_results['statuses']:
         if tweet["text"].startswith('RT'):
             continue #tweet is a RT - skip
