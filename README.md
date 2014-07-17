@@ -15,6 +15,11 @@ http://help.sentiment140.com/api/registration
 
 Please contact tipdoge.info for a tipdoge API key.
 
+Install requirements.
+
 `pip install -r requirements.txt`
 
+And run the bot.
+
+`python startUsingDoge.py`
 
