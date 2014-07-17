@@ -29,11 +29,11 @@ logging.info(tweet_text)
 
 
 while True:
-    try:
+    #try:
         #search for tweets about dogecoin
-        search_results = twitter.search(q='dogecoin', count=50)
-    except TwythonError as e:
-        print e
+    search_results = twitter.search(q='dogecoin', count=50)
+    #except TwythonError as e:
+    #    print e
 
     #request the mood for the tweets we just found
     tweet_moods = sentiment140.get_mood_of_tweets(search_results['statuses'])
