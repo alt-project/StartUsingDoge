@@ -37,11 +37,15 @@ while True:
     for tweet in search_results:
 
         logging.info("retweeted by @" + str(tweet['user']['screen_name']))
-        tweet_text= "@tipdoge tip @" + tweet[u'user'][u"screen_name"] + " 100 - Just testing the twitter API. Keep the Doge!"
-        logging.info(tweet_text)
-        twitter.update_status(status=tweet_text.encode('UTF-8'))
-        memo[tweet['user']['screen_name']] = 1
-        open(store,'w').write(json.dumps(memo))
-        time.sleep(120)
+        if memo.has_key(tweet['user']['screen_name']):
+            logging.info('already rewarded.')
+            continue
+        else:
+            tweet_text= "@tipdoge tip @" + tweet[u'user'][u"screen_name"] + " 100 - Just testing the twitter API. Keep the Doge!"
+            logging.info(tweet_text)
+            twitter.update_status(status=tweet_text.encode('UTF-8'))
+            memo[tweet['user']['screen_name']] = 1
+            open(store,'w').write(json.dumps(memo))
+            time.sleep(120)
 
     time.sleep(60)

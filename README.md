@@ -17,3 +17,12 @@ And run the bot:
 
 `python startUsingDoge.py`
 
+# Rewarding retweets
+
+A directory to store already rewarded users between runs.
+
+`mkdir db`
+
+`python rewardRetweets.py <tweet_id>`
+
+
