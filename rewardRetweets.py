@@ -65,7 +65,12 @@ while True:
             logging.info('already rewarded.')
             continue
         else:
-            reward = min(max(int(tweet[u'user'][u'followers_count'] * 0.5), 20), 9 * int(sqrt(tweet[u'user'][u'followers_count'])))
+            reward = min(max(int(tweet[u'user'][u'followers_count'] * 0.25), 20), 9 * int(sqrt(tweet[u'user'][u'followers_count'])))
+            msg = 'Wow.'
+            if tweet[u'user'][u'followers_count'] > 1000:
+              msg = 'Wow, such followers!'
+            if tweet[u'user'][u'followers_count'] > 10000:
+              msg = 'Amaze, so followers, thanks Shibe!!'
             if freq > 25:
               reward = reward / 3 
             if freq > 50:
@@ -74,9 +79,13 @@ while True:
               reward += 2 ** random.randint(2,6)
             if age > 300:
               reward += 15
+              msg = 'Wow, such old twitter shibe! Bonus!'
             reward = reward / tweet_age
-            reward = max(reward, 10)
-            tweet_text= "@tipdoge tip @" + tweet[u'user'][u"screen_name"] + " %s - thanks! see tipdoge.info for instructions on how to use your Dogecoin!" % reward
+            if reward < 10:
+              reward = 10
+              if tweet_age > 3:
+                msg = ' Such old tweet, less doge. Retweet quickly next time!'
+            tweet_text= "@tipdoge tip @" + tweet[u'user'][u"screen_name"] + " %s - thanks Shibe, see tipdoge.info for your #dogecoin! %s" % (reward,msg)
 
             logging.info(tweet_text)
             try:
